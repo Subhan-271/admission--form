@@ -23,6 +23,8 @@
             max-width: 1200px;
             padding-top: 20px;
         }
+
+        
         table th, table td {
             text-align: center;
             vertical-align: middle;
