@@ -1,0 +1,476 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Admission Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script><style>
+    /* Existing styles */
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    body {
+        background: linear-gradient(135deg, #f2f2f2 0%, #ffffff 100%);
+        flex: 1;
+    }
+
+    header {
+    background-color: #003366;
+    color: white;
+    padding: 0.5rem 0;
+    text-align: center;
+}
+
+    .header h1 {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+    .footer {
+        background-color: #003366;
+        color: white;
+        padding: 1rem 0;
+        text-align: center;
+        margin-top: auto;
+        box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container {
+        background: white;
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        margin-top: 2rem;
+    }
+    a:hover {
+        color: white !important
+    }
+
+    .form-container:hover {
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-container h1 {
+        margin-bottom: 1.5rem;
+        font-size: 2rem;
+        color: #343a40;
+    }
+
+    .form-container .form-label {
+        font-weight: 500;
+        color: #343a40;
+    }
+
+    .form-control {
+        border-radius: 5px;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+    nav {
+      background-color: #002244;
+    }
+
+    nav a {
+      color: white;
+      padding: 14px 20px;
+      display: inline-block;
+      text-decoration: none !important;
+      
+      transition: background 0.3s;
+    }
+    .mainContainter {
+        padding-top: 10px;
+        padding-bottom:10px;
+    }
+    </style>
+</head>
+
+<body>
+   <!-- Header -->
+  <header>
+    <h3>Islamabad National University</h3>
+    <p class="lead">Empowering Pakistan’s Future</p>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="text-center">
+    <a href="index.html">Home</a>
+    <a href="./Programs.html">Programs</a>
+    <a href="./About.html">About Us</a>
+    <a href="./Newform.html">Admissions</a>
+    <a href="./Alumni.html">Alumni</a>
+    <a href="./Contact.html">Contact Us</a>
+  </nav>
+    <div class="container mt-4">
+        <h1 class="text-center">Update Your Information</h1>
+        <form id="updateForm" enctype="multipart/form-data" novalidate>
+            <input type="hidden" id="recordId" name="id">
+
+            <div class="row">
+                <!-- Left Column -->
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label for="inputText">Applicant Name</label>
+                        <input type="text" class="form-control" id="inputText" name="inputText" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inputEmail">Email</label>
+                        <input type="email" class="form-control" id="inputEmail" name="inputEmail" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inputPassword">Password</label>
+                        <input type="password" class="form-control" id="inputPassword" name="inputPassword" required minlength="6">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inputNumber">CNIC</label>
+                        <input type="text" class="form-control" id="inputNumber" name="inputNumber" required pattern="\d{13}">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="formFile">Upload Challan</label>
+                        <input type="file" class="form-control" id="formFile" name="formFile">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inputAgeRange">Age Range</label>
+                        <input type="range" class="form-control" id="inputAgeRange" name="inputAgeRange" min="0" max="120" value="30">
+                        <p>Selected Age: <span id="ageValue">30</span></p>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="col-md-6">
+                    <div class="form-group">
+                                    <label for="inputSelect" class="form-label">Select Program</label><br>
+                                    <select class="form-select" id="inputSelect" name="inputSelect" required>
+                                        <option value="">Select Program</option>
+                                        <option value="1">BS in Computer Science BS(CS)</option>
+                                        <option value="2">BS in Software Engineering BS(SE)</option>
+                                        <option value="3">BS in Information Technology BS(IT)</option>
+                                        <option value="4">BS in Artificial Intelligence BS(AI)</option>
+                                        <option value="5">ADP in Computer Science ADP(CS)</option>
+                                        <option value="6">ADP in Account and Finance-ADP(AF)</option>
+                                        <option value="7">ADP in Digital Marketing-ADP(DM)</option>
+                                        <option value="8">Bachelor of Business Administration- BBA</option>
+                                        <option value="9">Bachelor of Fashion Design- BFD</option>
+                                        <option value="10">Bachelor of Textile Design- BTD</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please select an option.
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                        <!-- Program Preference 1 -->
+                                        <div class="form-group">
+                                            <label for="inputProgramPreference1" class="form-label">Program Preference
+                                                1</label>
+                                            <select class="form-select" id="inputProgramPreference1"
+                                                name="inputProgramPreference1" required>
+                                                <option value="">Select Program Preference 2</option>
+                                                <option value="1">BS(CS)</option>
+                                                <option value="2">BS(SE)</option>
+                                                <option value="3">BS(IT)</option>
+                                                <option value="4">BS(AI)</option>
+                                                <option value="5">ADP(CS)</option>
+                                                <option value="6">ADP(AF)</option>
+                                                <option value="7">ADP(DM)</option>
+                                                <option value="8">BBA</option>
+                                                <option value="9">BFD</option>
+                                                <option value="10">BTD</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Please select an option for Program Preference 1.
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                        <!-- Program Preference 2 -->
+                                        <div class="form-group">
+                                            <label for="inputProgramPreference2" class="form-label">Program Preference
+                                                2</label>
+                                            <select class="form-select" id="inputProgramPreference2"
+                                                name="inputProgramPreference2" required>
+                                                <option value="">Select Program Preference 2</option>
+                                                <option value="1">BS(CS)</option>
+                                                <option value="2">BS(SE)</option>
+                                                <option value="3">BS(IT)</option>
+                                                <option value="4">BS(AI)</option>
+                                                <option value="5">ADP(CS)</option>
+                                                <option value="6">ADP(AF)</option>
+                                                <option value="7">ADP(DM)</option>
+                                                <option value="8">BBA</option>
+                                                <option value="9">BFD</option>
+                                                <option value="10">BTD</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Please select an option for Program Preference 2.
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                        <!-- Program Preference 3 -->
+                                        <div class="form-group">
+                                            <label for="inputProgramPreference3" class="form-label">Program Preference
+                                                3</label>
+                                            <select class="form-select" id="inputProgramPreference3"
+                                                name="inputProgramPreference3" required>
+                                                <option value="">Select Program Preference 2</option>
+                                                <option value="1">BS(CS)</option>
+                                                <option value="2">BS(SE)</option>
+                                                <option value="3">BS(IT)</option>
+                                                <option value="4">BS(AI)</option>
+                                                <option value="5">ADP(CS)</option>
+                                                <option value="6">ADP(AF)</option>
+                                                <option value="7">ADP(DM)</option>
+                                                <option value="8">BBA</option>
+                                                <option value="9">BFD</option>
+                                                <option value="10">BTD</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Please select an option for Program Preference 3.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                        <!-- Radio Buttons -->
+                                        <div class="form-group">
+                                            <label class="form-label">Session</label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="radioOptions"
+                                                    id="radio1" value="Morning" required>
+                                                <label class="form-check-label" for="radio1">
+                                                    Morning
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="radioOptions"
+                                                    id="radio2" value="Evening" required>
+                                                <label class="form-check-label" for="radio2">
+                                                    Evening
+                                                </label>
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                Please select a radio option.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Select Hobby</label>
+                                            <div class="row">
+                                                <div class="col-md-3 col-sm-6">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="hobby1"
+                                                            name="inputHobbies" value="Reading">
+                                                        <label class="form-check-label" for="hobby1">Reading</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-sm-6">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="hobby2"
+                                                            name="inputHobbies" value="Traveling">
+                                                        <label class="form-check-label" for="hobby2">Traveling</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-sm-6">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="hobby3"
+                                                            name="inputHobbies" value="Gaming">
+                                                        <label class="form-check-label" for="hobby3">Gaming</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-sm-6">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="hobby4"
+                                                            name="inputHobbies" value="Gardening">
+                                                        <label class="form-check-label" for="hobby4">Gardening</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-sm-6">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="hobby5"
+                                                            name="inputHobbies" value="Cooking">
+                                                        <label class="form-check-label" for="hobby5">Cooking</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-sm-6">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="hobby6"
+                                                            name="inputHobbies" value="Photography">
+                                                        <label class="form-check-label" for="hobby6">Photography</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-sm-6">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="hobby7"
+                                                            name="inputHobbies" value="Painting">
+                                                        <label class="form-check-label" for="hobby7">Painting</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-sm-6">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="hobby8"
+                                                            name="inputHobbies" value="Cycling">
+                                                        <label class="form-check-label" for="hobby8">Cycling</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-sm-6">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="hobby9"
+                                                            name="inputHobbies" value="Hiking">
+                                                        <label class="form-check-label" for="hobby9">Hiking</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-sm-6">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="hobby10"
+                                                            name="inputHobbies" value="Knitting">
+                                                        <label class="form-check-label" for="hobby10">Knitting</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                Please select at least one hobby.
+                                            </div>
+                                            <div id="hobbyPreferences" class="mt-2"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                    
+                    <div class="form-group mb-3">
+                        <label for="inputDate">Test Date</label>
+                        <input type="date" class="form-control" id="inputDate" name="inputDate">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="inputTime">Test Time</label>
+                        <input type="time" class="form-control" id="inputTime" name="inputTime">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="inputTextarea">Why do you want to join this university?</label>
+                <textarea class="form-control" id="inputTextarea" name="inputTextarea" rows="3"></textarea>
+            </div>
+
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary">Update</button>
+                <a href="Newview.html" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Islamabad National University. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const id = new URLSearchParams(window.location.search).get('id');
+        if (!id) {
+            Swal.fire('Missing ID', 'No record ID provided in URL', 'error');
+        }
+
+        // Populate preferences dropdowns
+        const populateDropdowns = (value, selector) => {
+            const options = document.getElementById("inputSelect").innerHTML;
+            document.getElementById(selector).innerHTML = options;
+            document.getElementById(selector).value = value;
+        }
+
+        // Show selected age
+        document.getElementById("inputAgeRange").addEventListener("input", (e) => {
+            document.getElementById("ageValue").textContent = e.target.value;
+        });
+
+        fetch(`getUpdateData.php?id=${id}`)
+  .then(res => res.json())
+  .then(result => {
+    if (result.status === 'success') {
+      const data = result.data;
+
+      // Populate input fields
+      
+      document.getElementById('recordId').value = data.id;
+      document.getElementById('inputText').value = data.name;
+      document.getElementById('inputEmail').value = data.email;
+      document.getElementById('inputPassword').value = data.password;
+      document.getElementById('inputNumber').value = data.cnic;
+      document.getElementById('inputSelect').value = data.select_program;
+      document.getElementById('inputProgramPreference1').value = data.program_preference_1;
+      document.getElementById('inputProgramPreference2').value = data.program_preference_2;
+      document.getElementById('inputProgramPreference3').value = data.program_preference_3;
+      const selectedHobbies = data.hobbies.split(',');
+
+// Loop through all checkbox inputs with name="inputHobbies"
+document.querySelectorAll('input[name="inputHobbies"]').forEach(checkbox => {
+  if (selectedHobbies.includes(checkbox.value)) {
+    checkbox.checked = true;
+  } else {
+    checkbox.checked = false;
+  }
+});
+      document.getElementById('inputDate').value = data.test_date;
+      document.getElementById('inputTime').value = data.test_time;
+      document.getElementById('inputAgeRange').value = data.ageRange;
+      document.getElementById('inputTextarea').value = data.joinUni;
+
+      // Display selected age
+      document.getElementById('ageValue').textContent = data.ageRange;
+
+      // Radio buttons
+      if (data.session === 'Morning') {
+        document.getElementById('radio1').checked = true;
+      } else if (data.session === 'Evening') {
+        document.getElementById('radio2').checked = true;
+      }
+
+      // File: just show the name or preview if needed
+      const filePreview = document.createElement('p');
+      filePreview.textContent = `Uploaded file: ${data.file_path.split('/').pop()}`;
+      document.getElementById('formFile').insertAdjacentElement('afterend', filePreview);
+    } else {
+      alert('Record not found.');
+    }
+  })
+  .catch(error => console.error('Error fetching data:', error));
+
+        // AJAX form submit
+        document.getElementById("updateForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            fetch("Newupdate.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.json())
+            .then(response => {
+                Swal.fire(response.status, response.message, response.status);
+                if (response.status === "success") {
+                    setTimeout(() => window.location.href = "Newview.html", 1500);
+                }
+            })
+            .catch(() => Swal.fire("Error", "Could not update the record", "error"));
+        });
+    </script>
+</body>
+</html>
